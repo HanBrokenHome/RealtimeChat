@@ -31,7 +31,7 @@ const Chat = ({ SignOut, user }) => {
         try {
             await addDoc(collection(db, 'msg'), {
                 Text: pesan,
-                createAt: new Date(), 
+                createAt: new Date(),
                 uid: user.uid,
                 displayName: user.displayName,
                 photoUrl: user.photoURL,
@@ -44,10 +44,12 @@ const Chat = ({ SignOut, user }) => {
 
     return (
         <Box sx={{
-            maxWidth: "800px",
-            margin: "0 auto",
             display: "flex",
             flexDirection: "column",
+            justifyContent: "space-between",
+            height: "100vh", // pastikan chat mengisi seluruh tinggi layar
+            maxWidth: "800px",
+            margin: "0 auto",
             gap: "1rem",
             padding: "1rem",
             backgroundColor: "#f5f5f5",
@@ -70,9 +72,10 @@ const Chat = ({ SignOut, user }) => {
             >
                 Sign Out
             </Button>
+
             <Box sx={{
-                maxHeight: "500px",
-                overflowY: "auto",
+                flexGrow: 1, // memungkinkan kotak pesan mengisi sisa ruang
+                overflowY: "auto", // agar pesan bisa scroll jika banyak
                 display: "flex",
                 flexDirection: "column",
                 gap: "0.5rem",
@@ -100,25 +103,30 @@ const Chat = ({ SignOut, user }) => {
                     </Typography>
                 )}
             </Box>
-            <form
-                onSubmit={KirimPesan}
-                style={{
+
+            <Box sx={{
+                padding: "1rem",
+                backgroundColor: "#fff",
+                boxShadow: "0 -2px 4px rgba(0,0,0,0.1)",
+            }}>
+                <form onSubmit={KirimPesan} style={{
                     display: "flex",
                     flexDirection: "row",
                     gap: "1rem",
-                }}
-            >
-                <TextField
-                    label="Type your message..."
-                    fullWidth
-                    variant="outlined"
-                    onChange={(e) => setPesan(e.target.value)}
-                    value={pesan}
-                />
-                <IconButton type="submit" variant="contained" color="primary">
-                    <Send/>
-                </IconButton>
-            </form>
+                    alignItems: "center", // Menjaga posisi input dan tombol kirim
+                }}>
+                    <TextField
+                        label="Type your message..."
+                        fullWidth
+                        variant="outlined"
+                        onChange={(e) => setPesan(e.target.value)}
+                        value={pesan}
+                    />
+                    <IconButton type="submit" variant="contained" color="primary">
+                        <Send />
+                    </IconButton>
+                </form>
+            </Box>
         </Box>
     );
 };
