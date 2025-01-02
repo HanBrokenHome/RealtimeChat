@@ -14,7 +14,7 @@ This is a simple real-time chat application built using React, Firebase, and Mat
 
 - **Frontend**: React.js, Material UI, Tailwind CSS
 - **Backend**: Firebase (Firestore, Authentication)
-- **Deployment**: Vercel (or Firebase Hosting)
+- **Deployment**: Vercel, Netlify (or Firebase Hosting)
 
 ## Getting Started
 
